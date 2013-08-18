@@ -21,6 +21,11 @@
 	<preference name="auto-hide-splash-screen" value="false" />
 	<preference name="target-device" value="universal" />
 	<preference name="exit-on-suspend" value="false" />
+	<preference name="android-installLocation" value="auto" />
+	<preference name="load-url-timeout" value="15000" />
+	
+	<preference name="android-minSdkVersion" value="7" />
+	<preference name="android-maxSdkVersion" value="18" />
 	
 	<icon src="icon.png" />
 	<icon src="icon.png" gap:platform="android" gap:density="ldpi" />

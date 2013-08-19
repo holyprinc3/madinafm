@@ -74,12 +74,8 @@
 			myIntro.play();
 			playing = true;
     	} else {
-			if(myIntro.MEDIA_RUNNING == 2){
-				myIntro.stop();
-			}
-			if(myMadinafm.MEDIA_RUNNING == 2){
-    			myMadinafm.stop();
-			}
+			myIntro.stop();
+			myMadinafm.stop();
     		playing = false;
 			$("#lod").hide("fast");
 			document.getElementById('audio_position').innerHTML = 'Perangkat Siap';

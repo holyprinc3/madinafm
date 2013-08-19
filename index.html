@@ -65,6 +65,13 @@
 									if(status == Media.MEDIA_STARTING) {
 										$("#lod").show("fast");
 										document.getElementById('audio_position').innerHTML = 'Buffering Streaming...';
+										setTimeout(function () {
+											myMadinafm.stop();
+											document.getElementById('audio_position').innerHTML = 'Koneksi Internet Bermasalah...';
+											$("#playing").html("PLAY").button('refresh');
+											playing = false;
+											$("#lod").hide("fast");
+										}, 10000);
 									}else if(status == Media.MEDIA_RUNNING) {
 										$("#lod").hide("fast");
     									document.getElementById('audio_position').innerHTML = 'Online';									
@@ -79,9 +86,11 @@
 			$("#playing").html("PLAY").button('refresh');
 			//$("#playing").attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
 			if(myIntro.MEDIA_RUNNING){
+				alert("intro stop");
 				myIntro.stop();
 			}
 			if(myMadinafm.MEDIA_RUNNING){
+				alert("streaming stop");
     			myMadinafm.stop();
 			}
     		playing = false;

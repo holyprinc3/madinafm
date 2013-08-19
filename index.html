@@ -19,7 +19,7 @@
 	});
 	document.addEventListener("deviceready", onDeviceReady, false);
     $(document).bind('pageinit',function(){
-		$( "#playing" ).bind( "change", function(event, ui) {
+		$( "#playing" ).bind( "click", function(event, ui) {
 			mainkan();
 		});
 	});
@@ -74,10 +74,10 @@
 			myIntro.play();
 			playing = true;
     	} else {
-			if(myIntro.MEDIA_RUNNING){
+			if(myIntro.MEDIA_RUNNING == 2){
 				myIntro.stop();
 			}
-			if(myMadinafm.MEDIA_RUNNING){
+			if(myMadinafm.MEDIA_RUNNING == 2){
     			myMadinafm.stop();
 			}
     		playing = false;
@@ -118,10 +118,6 @@
 	<div data-role="content">
 		<center>
 		<div id="dtime">date time</div>
-		<select name="playing" id="playing" data-role="slider" data-track-theme="b" data-theme="a" >
-            <option value="off" >STOP</option>
-            <option value="on" >PLAY</option>
-        </select>
 		<a href="#" id="playing" data-role="button" data-theme="a" data-inline="true">PLAY</a>
 		<div class="ui-corner-all ui-body-b ui-dialog-contain" style="background:#090;border-color:#060;">
 			<div id="lod" style="margin:.7em;"><img src="css/images/ajaxloader.gif" /></div>

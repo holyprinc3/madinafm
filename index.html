@@ -19,7 +19,7 @@
 	});
 	document.addEventListener("deviceready", onDeviceReady, false);
     $(document).bind('pageinit',function(){
-		$( "#playing" ).bind( "click", function() {
+		$( "#playing" ).bind( "change", function(event, ui) {
 			mainkan();
 		});
 	});
@@ -49,7 +49,6 @@
 	}
 	function mainkan() {
 		if(!playing) {
-			$("#playing").html("STOP").button('refresh');
 			myIntro = new Media("/android_asset/www/intro.mp3",onSuccess, onError,
 					function(status) {
 						if(status == Media.MEDIA_STARTING) {
@@ -64,13 +63,6 @@
 									if(status == Media.MEDIA_STARTING) {
 										$("#lod").show("fast");
 										document.getElementById('audio_position').innerHTML = 'Buffering Streaming...';
-										setTimeout(function () {
-											myMadinafm.stop();
-											document.getElementById('audio_position').innerHTML = 'Koneksi Internet Bermasalah...';
-											$("#playing").html("PLAY").button('refresh');
-											playing = false;
-											$("#lod").hide("fast");
-										}, 10000);
 									}else if(status == Media.MEDIA_RUNNING) {
 										$("#lod").hide("fast");
     									document.getElementById('audio_position').innerHTML = 'Online';									
@@ -82,13 +74,10 @@
 			myIntro.play();
 			playing = true;
     	} else {
-			$("#playing").html("PLAY").button('refresh');
-			if(myIntro.MEDIA_RUNNING == 2){
-				alert("intro stop");
+			if(myIntro.MEDIA_RUNNING){
 				myIntro.stop();
 			}
-			if(myMadinafm.MEDIA_RUNNING == 2){
-				alert("streaming stop");
+			if(myMadinafm.MEDIA_RUNNING){
     			myMadinafm.stop();
 			}
     		playing = false;
@@ -129,14 +118,11 @@
 	<div data-role="content">
 		<center>
 		<div id="dtime">date time</div>
-		<!--
-		<select name="playing" id="playing_" data-role="slider" data-track-theme="b" data-theme="a" >
+		<select name="playing" id="playing" data-role="slider" data-track-theme="b" data-theme="a" >
             <option value="off" >STOP</option>
             <option value="on" >PLAY</option>
         </select>
-		-->
-		<a href="javascript:void(0);" id="playing" data-role="button" data-theme="b" data-inline="true">PLAY</a>
-		
+		<a href="#" id="playing" data-role="button" data-theme="a" data-inline="true">PLAY</a>
 		<div class="ui-corner-all ui-body-b ui-dialog-contain" style="background:#090;border-color:#060;">
 			<div id="lod" style="margin:.7em;"><img src="css/images/ajaxloader.gif" /></div>
 			<span class="ui-bar ui-shadow ui-overlay-d ui-corner-all">

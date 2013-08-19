@@ -65,10 +65,12 @@
 										document.getElementById('audio_position').innerHTML = 'Buffering Streaming...';
 										setTimeout(function () {
 											myMadinafm.stop();
+											$("#lod").hide("fast");
 											document.getElementById('audio_position').innerHTML = 'Koneksi Internet Bermasalah...';
 											//$("#playing").html("PLAY").button('refresh');
+											myIntro = null;
+											myMadinafm = null;
 											playing = false;
-											$("#lod").hide("fast");
 										}, 10000);
 									}else if(status == Media.MEDIA_RUNNING) {
 										$("#lod").hide("fast");
@@ -81,12 +83,14 @@
 			myIntro.play();
 			playing = true;
     	} else {
-			if(myIntro.play()){
+			if(myIntro != null){
 				myIntro.stop();
 			}
-			if(myMadinafm.play()){
+			if(myMadinafm != null){
 				myMadinafm.stop();
 			}
+			myIntro = null;
+			myMadinafm = null;
     		playing = false;
 			$("#lod").hide("fast");
 			document.getElementById('audio_position').innerHTML = 'Perangkat Siap';

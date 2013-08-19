@@ -67,7 +67,7 @@
 											myMadinafm.stop();
 											$("#lod").hide("fast");
 											document.getElementById('audio_position').innerHTML = 'Koneksi Internet Bermasalah...';
-											//$("#playing").html("PLAY").button('refresh');
+											$("#playing").html("PLAY").button('refresh');
 											myIntro = null;
 											myMadinafm = null;
 											playing = false;
@@ -82,6 +82,7 @@
 						}
 					});
 			myIntro.play();
+			$("#playing").html("STOP").button('refresh');
 			playing = true;
     	} else {
 			if(myIntro != null){
@@ -90,9 +91,8 @@
 			if(myMadinafm != null){
 				myMadinafm.stop();
 			}
-			myIntro = null;
-			myMadinafm = null;
     		playing = false;
+			$("#playing").html("PLAY").button('refresh');
 			$("#lod").hide("fast");
 			document.getElementById('audio_position').innerHTML = 'Perangkat Siap';
     	}

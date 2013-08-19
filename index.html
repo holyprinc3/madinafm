@@ -49,8 +49,7 @@
 	}
 	function mainkan() {
 		if(!playing) {
-			$( "#playing" ).html("STOP").button('refresh');
-			//$( "#playing" ).attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+			$("#playing").html("STOP").button('refresh');
 			myIntro = new Media("/android_asset/www/intro.mp3",onSuccess, onError,
 					function(status) {
 						if(status == Media.MEDIA_STARTING) {
@@ -84,12 +83,11 @@
 			playing = true;
     	} else {
 			$("#playing").html("PLAY").button('refresh');
-			//$("#playing").attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
-			if(myIntro.MEDIA_RUNNING){
+			if(myIntro.MEDIA_RUNNING == 2){
 				alert("intro stop");
 				myIntro.stop();
 			}
-			if(myMadinafm.MEDIA_RUNNING){
+			if(myMadinafm.MEDIA_RUNNING == 2){
 				alert("streaming stop");
     			myMadinafm.stop();
 			}

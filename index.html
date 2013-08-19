@@ -63,7 +63,7 @@
 									if(status == Media.MEDIA_STARTING) {
 										$("#lod").show("fast");
 										document.getElementById('audio_position').innerHTML = 'Buffering Streaming...';
-										setTimeout(function () {
+										cekstream = setTimeout(function () {
 											myMadinafm.stop();
 											$("#lod").hide("fast");
 											document.getElementById('audio_position').innerHTML = 'Koneksi Internet Bermasalah...';
@@ -73,6 +73,7 @@
 											playing = false;
 										}, 10000);
 									}else if(status == Media.MEDIA_RUNNING) {
+										clearInterval(cekstream);
 										$("#lod").hide("fast");
     									document.getElementById('audio_position').innerHTML = 'Online';									
 									}

@@ -20,7 +20,16 @@
 	document.addEventListener("deviceready", onDeviceReady, false);
     $(document).bind('pageinit',function(){
 		$( "#playing" ).bind( "click", function(event, ui) {
-			mainkan();
+			if(!playing) {
+				mainkan();
+				playing = true;
+			}
+		});
+		$( "#stoped" ).bind( "click", function(event, ui) {
+			if(playing) {
+				mainkan();
+				playing = false;
+			}
 		});
 	});
 	function onDeviceReady() {
@@ -48,7 +57,6 @@
     	$("#infoError").popup("open")
 	}
 	function mainkan() {
-		if(!playing) {
 			myIntro = new Media("/android_asset/www/intro.mp3",onSuccess, onError,
 					function(status) {
 						if(status == Media.MEDIA_STARTING) {
@@ -84,20 +92,20 @@
 			myIntro.play();
 			$("#playing").html("STOP").button('refresh');
 			playing = true;
-    	} else {
-			if(myIntro != null){
-				myIntro.stop();
-			}
-			if(myMadinafm != null){
-				myMadinafm.stop();
-			}
-    		playing = false;
-			$("#playing").html("PLAY").button('refresh');
-			$("#lod").hide("fast");
-			document.getElementById('audio_position').innerHTML = 'Perangkat Siap';
-    	}
-
     }
+	function hentikan() {
+		if(myIntro != null){
+			myIntro.pause();
+		}
+		if(myMadinafm != null){
+			myMadinafm.pause();
+		}
+		myIntro.pause();
+		myMadinafm.pause();
+    	playing = false;
+		$("#lod").hide("fast");
+		document.getElementById('audio_position').innerHTML = 'Perangkat Siap';
+	}
 	function clock(){
 		var d=new Date();
 		
@@ -130,7 +138,8 @@
 	<div data-role="content">
 		<center>
 		<div id="dtime">date time</div>
-		<a href="#" id="playing" data-role="button" data-theme="a" data-inline="true">PLAY</a>
+		<a href="javascript:void(0)" id="playing" data-role="button" data-theme="b" data-inline="true">PLAY</a>
+		<a href="javascript:void(0)" id="stoped" data-role="button" data-theme="b" data-inline="true">STOP</a>
 		<div class="ui-corner-all ui-body-b ui-dialog-contain" style="background:#090;border-color:#060;">
 			<div id="lod" style="margin:.7em;"><img src="css/images/ajaxloader.gif" /></div>
 			<span class="ui-bar ui-shadow ui-overlay-d ui-corner-all">
